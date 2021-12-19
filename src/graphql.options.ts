@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { GqlModuleOptions, GqlOptionsFactory } from '@nestjs/graphql';
-import { join } from 'path/posix';
+import { join } from 'path';
 
 @Injectable()
 export class GraphqlOptions implements GqlOptionsFactory {
-  createGqlOptions(): GqlModuleOptions | Promise<GqlModuleOptions> {
+  createGqlOptions(): Promise<GqlModuleOptions> | GqlModuleOptions {
     return {
       context: ({ req, res }) => ({ req, res }),
       typePaths: ['./src/*/*.graphql'], // path for gql schema files
